@@ -2,29 +2,31 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    android:background="@android:color/transparent"
     >
 
     <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/meal_img"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_60sdp"
         android:scaleType="centerCrop"
         android:outlineSpotShadowColor="@color/white"
         android:src="@drawable/cake"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginVertical="@dimen/_12sdp"
+        android:layout_marginVertical="15dp"
         android:translationZ="@dimen/_50sdp"
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
         />
 
     <com.google.android.material.card.MaterialCardView
         style="@style/MyCardView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="-33dp"
         android:layout_marginVertical="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_14sdp"
         android:clipToPadding="true"
         app:cardElevation="@dimen/_4sdp"
         >
@@ -36,13 +38,14 @@
             <TextView
                 android:id="@+id/meal_name"
                 style="@style/TitleTextView"
-                android:layout_width="wrap_content"
+                android:textAlignment="textStart"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="@dimen/_40sdp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="80dp"
                 android:text="Chocolate Cake"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toTopOf="@+id/no_of_items"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -56,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:text="10 Items"
+                android:text="@string/no_of_items"
                 android:textColor="@color/middle_gray"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -71,11 +74,13 @@
     </com.google.android.material.card.MaterialCardView>
 
     <ImageButton
+        android:id="@+id/btn_show_ingredients"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:translationZ="@dimen/_7sdp"
         android:scaleType="centerCrop"
-        android:layout_marginStart="-15dp"
+        android:layout_marginStart="-35dp"
+        android:layout_marginEnd="@dimen/_8sdp"
         android:elevation="@dimen/_4sdp"
         android:layout_marginTop="@dimen/_32sdp"
         android:src="@drawable/yellow_arrow"

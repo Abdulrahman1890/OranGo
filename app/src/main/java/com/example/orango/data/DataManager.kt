@@ -3,8 +3,7 @@ package com.example.orango.data
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.orango.R
-import com.example.orango.data.models.OnBoardingData
-import com.example.orango.data.models.Product
+import com.example.orango.data.models.*
 import com.example.orango.ui.home.OfferViewPager
 import com.example.orango.ui.onBoarding.ViewPagerFragment
 import com.example.orango.util.*
@@ -16,6 +15,11 @@ object DataManager {
     private val offerProducts = ArrayList<Product>()
     val offerFragmentList = ArrayList<Fragment>()
 
+    private val meals = ArrayList<MealsData>()
+    val mealsFragmentList = ArrayList<Fragment>()
+
+    private val mealsIngriedients = ArrayList<MealsProduct>()
+    val mealsIngriedientsFragmentList = ArrayList<Fragment>()
 
     init {
         initOnBoardingData()

@@ -125,4 +125,5 @@
     <string name="back_to_home">Back to Home</string>
     <string name="receipt_items">Receipt Items</string>
     <string name="scan">Scan</string>
+    <string name="no_of_items">10 Items</string>
 </resources>
