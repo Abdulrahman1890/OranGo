@@ -68,14 +68,14 @@
         android:text="@string/our_team"
         android:textStyle="normal"
         android:paddingBottom="@dimen/_8sdp"
-        app:layout_constraintBottom_toTopOf="@+id/servicesList"
+        app:layout_constraintBottom_toTopOf="@+id/aboutUsList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/body"
         app:layout_constraintTop_toBottomOf="@+id/body" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/servicesList"
+        android:id="@+id/aboutUsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="true"
@@ -84,4 +84,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ourTeamText"
         tools:listitem="@layout/item_list_about_us" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
