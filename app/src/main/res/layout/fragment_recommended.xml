@@ -8,7 +8,7 @@
     tools:context=".ui.recommended.RecommendedFragment">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/back_from_search"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_35sdp"
         android:layout_marginBottom="@dimen/_16sdp"
@@ -30,11 +30,11 @@
         android:text="@string/recommended"
         android:textColor="@color/primaryColor"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintBottom_toBottomOf="@+id/back_from_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6" />
+        app:layout_constraintStart_toEndOf="@+id/back_from_search"
+        app:layout_constraintTop_toTopOf="@+id/back_from_search" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/back_from_search"
         tools:listitem="@layout/card_product" />
 
     <ImageView

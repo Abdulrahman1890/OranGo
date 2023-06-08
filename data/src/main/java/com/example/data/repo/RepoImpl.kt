@@ -16,9 +16,16 @@ class RepoImpl (private val database: OranGoDataBase) {
     val favorites :LiveData<List<ProductEntity>> = favoritesLiveData
 
     val bestSellingProduct = database.orangoDao.getAllBestSelling()
+
     var customerData : CustomerData? = null
     var currentError : String? = null
     var signUPError : Error? = null
+
+    val searchProduct: suspend (name: String) -> LiveData<List<ProductEntity>> = { name ->
+        withContext(Dispatchers.IO) {
+            database.orangoDao.getSearchProduct(name)
+        }
+    }
 
     suspend fun refreshProducts(customerId: Int) {
         withContext(Dispatchers.IO) {
@@ -27,6 +34,7 @@ class RepoImpl (private val database: OranGoDataBase) {
         }
 
     }
+
     suspend fun refreshFavourites(customerId : Int) {
         withContext(Dispatchers.IO) {
             val favouriteProductsResponse = Api.retrofitService.getFavouriteProducts(customerId = customerId)

@@ -10,7 +10,7 @@ import com.example.data.roomDB.entities.ProductEntity
 import com.example.data.roomDB.entities.ReceiptEntity
 
 @Database(entities = [ProductEntity::class,CategoryEntity::class, NoteEntity::class,ReceiptEntity::class], version = 1)
-abstract class OranGoDataBase : RoomDatabase() {
+abstract class  OranGoDataBase : RoomDatabase() {
     abstract val orangoDao: Dao
 
     companion object {

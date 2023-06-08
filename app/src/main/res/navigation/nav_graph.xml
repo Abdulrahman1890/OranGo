@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/bestSellingFragment2">
+    app:startDestination="@id/searchFragment2">
 
     <fragment
         android:id="@+id/splashScreen"
@@ -42,10 +42,27 @@
         <action
             android:id="@+id/action_logInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
     <fragment
         android:id="@+id/bestSellingFragment2"
         android:name="com.example.orango.ui.bestSelling.BestSellingFragment"
         android:label="fragment_best_selling"
         tools:layout="@layout/fragment_best_selling" />
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.example.orango.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/searchFragment2"
+        android:name="com.example.orango.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment2_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
 </navigation>

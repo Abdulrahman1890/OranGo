@@ -8,7 +8,7 @@
     tools:context=".ui.search.SearchFragment">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/back_from_search"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_35sdp"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
@@ -24,18 +24,21 @@
         android:id="@+id/emailTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        android:layout_marginTop="@dimen/_3sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/back_from_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
+
+        app:layout_constraintStart_toEndOf="@+id/back_from_search"
+        app:layout_constraintTop_toTopOf="@+id/back_from_search"
         app:startIconDrawable="@drawable/baseline_search_24"
         app:startIconTint="@color/primaryColor">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/search_view_edit_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:maxLines="1"
             android:hint="@string/search_product" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,8 +51,8 @@
         app:layout_constraintBottom_toTopOf="@+id/chipsLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintStart_toStartOf="@+id/back_from_search"
+        app:layout_constraintTop_toBottomOf="@+id/back_from_search" />
 
     <LinearLayout
         android:id="@+id/chipsLayout"
