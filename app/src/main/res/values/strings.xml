@@ -131,4 +131,7 @@
     <string name="_89_1561381">89 1561381</string>
     <string name="add_item">Add Item</string>
     <string name="cancel">Cancel</string>
+    <string name="choose_an_amount_for_your_budget_it_won_t_stop_any_purchases_but_we_ll_let_you_know_when_you_get_close_to_that_amount_it_s_automatically_removed_after_finishing_your_shopping">Choose an amount for your budget. It won\'t stop any purchases, but we\'ll let you know when you get close to that amount. It\'s automatically removed after finishing your shopping.</string>
+    <string name="submit">Submit</string>
+    <string name="_850_le">850 LE</string>
 </resources>
