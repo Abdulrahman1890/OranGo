@@ -127,4 +127,8 @@
     <string name="scan">Scan</string>
     <string name="set_budget">Set Budget</string>
     <string name="add_manual">Add Manual</string>
+    <string name="add_item_to_cart">Add Item To Cart</string>
+    <string name="_89_1561381">89 1561381</string>
+    <string name="add_item">Add Item</string>
+    <string name="cancel">Cancel</string>
 </resources>

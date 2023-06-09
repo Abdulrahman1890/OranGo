@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.data.roomDB.entities.ProductEntity
 import com.example.orango.R
+import com.example.orango.databinding.FragmentBestSellingBinding
 import com.example.orango.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
@@ -32,8 +33,9 @@ class SearchFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+    ): View {
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
