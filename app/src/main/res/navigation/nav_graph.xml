@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/cartFragment2">
+    app:startDestination="@id/notesFragment">
 
     <fragment
         android:id="@+id/splashScreen"
@@ -70,4 +70,14 @@
         android:name="com.example.orango.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/paymentDetailsFragment"
+        android:name="com.example.orango.ui.paymentDetails.PaymentDetailsFragment"
+        android:label="fragment_payment_details"
+        tools:layout="@layout/fragment_payment_details" />
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.example.orango.ui.notes.NotesFragment"
+        android:label="fragment_notes"
+        tools:layout="@layout/fragment_notes" />
 </navigation>

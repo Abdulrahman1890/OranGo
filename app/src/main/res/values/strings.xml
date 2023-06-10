@@ -134,4 +134,21 @@
     <string name="choose_an_amount_for_your_budget_it_won_t_stop_any_purchases_but_we_ll_let_you_know_when_you_get_close_to_that_amount_it_s_automatically_removed_after_finishing_your_shopping">Choose an amount for your budget. It won\'t stop any purchases, but we\'ll let you know when you get close to that amount. It\'s automatically removed after finishing your shopping.</string>
     <string name="submit">Submit</string>
     <string name="_850_le">850 LE</string>
+    <string name="finished_from_shopping">Finished From Shopping?</string>
+    <string name="checkout_confirmation">Checkout Confirmation</string>
+    <string name="are_you_sure_you_want_to_checkout">Are you sure you want to checkout?</string>
+    <string name="budget_exceeded">Budget Exceeded</string>
+    <string name="you_have_reached_the_budget_you_set_ntotal_price_850_le">You have reached the budget you set\nTotal Price = 850 LE</string>
+    <string name="got_it">Got it</string>
+    <string name="you_have_1200_points_do_you_want_to_use_them">You have 1200 points, do you want to use them?</string>
+    <string name="yes">Yes</string>
+    <string name="use_points">Use Points</string>
+    <string name="no">No</string>
+    <string name="delete_confirmation">Delete Confirmation</string>
+    <string name="are_you_sure_you_want_to_delete_your_account">Are you sure you want to delete your account? 🥹</string>
+    <string name="delete">Delete</string>
+    <string name="logout_confirmation">Logout Confirmation</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout? 😒</string>
+    <string name="logout">Logout</string>
+    <string name="are_you_sure_you_want_to_delete_all_notes">Are you sure you want to delete all notes?</string>
 </resources>

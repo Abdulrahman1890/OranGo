@@ -7,76 +7,55 @@
     android:background="@color/white">
 
     <ImageView
-        android:id="@+id/card_lock"
+        android:id="@+id/checkout_icon"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/card_lock_icon"
+        android:src="@drawable/checkout_icon"
         app:layout_constraintBottom_toTopOf="@+id/textView58"
-        app:layout_constraintEnd_toStartOf="@+id/textView88"
+        app:layout_constraintEnd_toStartOf="@+id/textView78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView88"
+        android:id="@+id/textView78"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="245dp"
-        android:text="@string/set_budget"
-        app:layout_constraintBottom_toBottomOf="@+id/card_lock"
+        android:layout_marginEnd="139dp"
+        android:text="@string/checkout_confirmation"
+        app:layout_constraintBottom_toBottomOf="@+id/checkout_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/card_lock"
-        app:layout_constraintTop_toTopOf="@+id/card_lock" />
+        app:layout_constraintStart_toEndOf="@+id/checkout_icon"
+        app:layout_constraintTop_toTopOf="@+id/checkout_icon" />
 
     <TextView
         android:id="@+id/textView58"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:padding="@dimen/_20sdp"
-        android:text="@string/choose_an_amount_for_your_budget_it_won_t_stop_any_purchases_but_we_ll_let_you_know_when_you_get_close_to_that_amount_it_s_automatically_removed_after_finishing_your_shopping"
-        app:layout_constraintBottom_toTopOf="@+id/budgetTextInputLayout"
+        android:text="@string/are_you_sure_you_want_to_checkout"
+        app:layout_constraintBottom_toTopOf="@+id/checkout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView88" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/budgetTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_18sdp"
-        android:layout_marginBottom="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
-        app:layout_constraintEnd_toEndOf="@+id/textView58"
-        app:layout_constraintStart_toStartOf="@+id/textView58"
-        app:layout_constraintTop_toBottomOf="@+id/textView58">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/budgetEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/_850_le"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textView78" />
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/submit"
+        android:id="@+id/checkout"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="@string/submit"
+        android:text="@string/checkout"
         android:textAllCaps="false"
         android:textSize="@dimen/_16ssp"
         app:layout_constraintBottom_toBottomOf="@+id/cancel"
-        app:layout_constraintEnd_toEndOf="@+id/budgetTextInputLayout"
+        app:layout_constraintEnd_toEndOf="@+id/textView58"
         app:layout_constraintStart_toEndOf="@+id/cancel"
         app:layout_constraintTop_toTopOf="@+id/cancel" />
 
@@ -93,8 +72,8 @@
         android:textColor="@color/gray"
         android:textSize="@dimen/_16ssp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/budgetTextInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/budgetTextInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/budgetTextInputLayout" />
+        app:layout_constraintEnd_toEndOf="@+id/textView58"
+        app:layout_constraintStart_toStartOf="@+id/textView58"
+        app:layout_constraintTop_toBottomOf="@+id/textView58" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
