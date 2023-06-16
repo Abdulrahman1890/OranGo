@@ -86,13 +86,13 @@ interface ApiService {
     suspend fun addNote(
         @Field("customer_id") customerId: Int,
         @Field("product_id") productId: Int,
-        @Field("quantity") quantity: Int,
+        @Field("quantity") quantity: Int
     ): AddNoteResponse
 
     @FormUrlEncoded
     @POST("notes/deleteAll")
     suspend fun deleteAllNotes(
-        @Field("customer_id") customerId: Int,
+        @Field("customer_id") customerId: Int
     ): DeleteAllNotesResponse
 
     @FormUrlEncoded
@@ -100,14 +100,14 @@ interface ApiService {
     suspend fun updateNote(
         @Field("customer_id") customerId: Int,
         @Field("product_id") productId: Int,
-        @Field("quantity") quantity: Int,
+        @Field("quantity") quantity: Int
     ): UpdateNoteResponse
 
     @FormUrlEncoded
     @POST("notes/delete")
     suspend fun deleteNote(
         @Field("customer_id") customerId: Int,
-        @Field("product_id") productId: Int,
+        @Field("product_id") productId: Int
     ): DeleteNoteResponse
 
 

@@ -65,4 +65,18 @@
             android:id="@+id/action_searchFragment2_to_homeFragment2"
             app:destination="@id/homeFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/addNewNoteFragment"
+        android:name="com.example.orango.ui.addNote.AddNewNoteFragment"
+        android:label="fragment_add_new_note"
+        tools:layout="@layout/fragment_add_new_note" >
+        <action
+            android:id="@+id/action_addNewNoteFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.example.orango.ui.notes.NotesFragment"
+        android:label="fragment_notes"
+        tools:layout="@layout/fragment_notes" />
 </navigation>
