@@ -6,6 +6,7 @@ import com.example.orango.R
 import com.example.orango.data.models.OnBoardingData
 import com.example.orango.data.models.Product
 import com.example.orango.data.models.SettingAndServicesOption
+import com.example.orango.data.models.*
 import com.example.orango.ui.home.OfferViewPager
 import com.example.orango.ui.onBoarding.ViewPagerFragment
 import com.example.orango.util.BODY
@@ -22,6 +23,11 @@ object DataManager {
 
     var services = mutableListOf<SettingAndServicesOption>()
     var settings = mutableListOf<SettingAndServicesOption>()
+    private val meals = ArrayList<MealsData>()
+    val mealsFragmentList = ArrayList<Fragment>()
+
+    private val mealsIngriedients = ArrayList<MealsProduct>()
+    val mealsIngriedientsFragmentList = ArrayList<Fragment>()
 
     init {
         initOnBoardingData()

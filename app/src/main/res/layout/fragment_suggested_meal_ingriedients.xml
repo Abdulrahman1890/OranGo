@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <include
-        android:id="@+id/include3"
+        android:id="@+id/includeMeal"
         layout="@layout/card_meal_ingrediants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

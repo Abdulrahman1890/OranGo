@@ -246,5 +246,32 @@
             app:popUpToInclusive="true"/>
 
     </fragment>
+        tools:layout="@layout/fragment_services"/>
+    <fragment
+        android:id="@+id/suggestedMealsFragment"
+        android:name="com.example.orango.ui.suggestedMeals.SuggestedMealsFragment"
+        android:label="fragment_suggested_meals"
+        tools:layout="@layout/fragment_suggested_meals" >
+        <action
+            android:id="@+id/action_suggestedMealsFragment_to_suggestedMealIngriedientsFragment"
+            app:destination="@id/suggestedMealIngriedientsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/suggestedMealIngriedientsFragment"
+        android:name="com.example.orango.ui.suggestedMealIngriedients.SuggestedMealIngriedientsFragment"
+        android:label="fragment_suggested_meal_ingriedients"
+        tools:layout="@layout/fragment_suggested_meal_ingriedients" >
+        <action
+            android:id="@+id/action_suggestedMealIngriedientsFragment_to_suggestedMealsFragment"
+            app:destination="@id/suggestedMealsFragment" />
+        <argument
+            android:name="mealName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.example.orango.ui.aboutus.AboutUsFragment"
+        android:label="fragment_about_us"
+        tools:layout="@layout/fragment_about_us" />
 
 </navigation>

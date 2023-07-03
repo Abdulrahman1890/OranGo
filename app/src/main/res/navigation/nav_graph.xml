@@ -6,6 +6,27 @@
     app:startDestination="@id/splashScreen">
 
     <fragment
+        android:id="@+id/suggestedMealIngriedientsFragment"
+        android:name="com.example.orango.ui.suggestedMealIngriedients.SuggestedMealIngriedientsFragment"
+        android:label="fragment_suggested_meal_ingriedients"
+        tools:layout="@layout/fragment_suggested_meal_ingriedients">
+        <action
+            android:id="@+id/action_suggestedMealIngriedientsFragment_to_suggestedMealsFragment"
+            app:destination="@id/suggestedMealsFragment" />
+        <argument
+            android:name="mealName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/suggestedMealsFragment"
+        android:name="com.example.orango.ui.suggestedMeals.SuggestedMealsFragment"
+        android:label="fragment_suggested_meals"
+        tools:layout="@layout/fragment_suggested_meals">
+        <action
+            android:id="@+id/action_suggestedMealsFragment_to_suggestedMealIngriedientsFragment"
+            app:destination="@id/suggestedMealIngriedientsFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/splashScreen"
         android:name="com.example.orango.ui.splashscreen.SplashScreen"
         android:label="screen_splash"
@@ -43,6 +64,11 @@
             android:id="@+id/action_logInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutUsFragment2"
+        android:name="com.example.orango.ui.aboutus.AboutUsFragment"
+        android:label="fragment_about_us"
+        tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/favouritesFragment2"
         android:name="com.example.orango.ui.favourites.FavouritesFragment"
