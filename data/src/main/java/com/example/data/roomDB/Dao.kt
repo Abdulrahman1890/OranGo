@@ -24,6 +24,10 @@ interface Dao {
     @Query("SELECT * FROM products WHERE productName = :productName")
     fun getProductByName(productName: String): List<ProductEntity>
 
+    // search for product
+    @Query("SELECT * FROM products WHERE productName LIKE :name")
+    fun getSearchProduct(name: String): LiveData<List<ProductEntity>>
+
     //get similar products in product info page
     @Query("SELECT * FROM products WHERE categoryId = :categoryId LIMIT 10")
     fun getSimilarProducts(categoryId: Int): List<ProductEntity>

@@ -8,7 +8,7 @@
     tools:context=".ui.paymentDetails.PaymentDetailsFragment">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/back_from_search"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_35sdp"
         android:layout_marginBottom="@dimen/_16sdp"
@@ -32,11 +32,11 @@
         android:text="@string/payment_details"
         android:textColor="@color/primaryColor"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintBottom_toBottomOf="@+id/back_from_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6" />
+        app:layout_constraintStart_toEndOf="@+id/back_from_search"
+        app:layout_constraintTop_toTopOf="@+id/back_from_search" />
 
     <TextView
         android:id="@+id/textView39"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintTop_toBottomOf="@+id/back_from_search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/servicesList"
@@ -70,11 +70,12 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="124dp"
         android:text="@string/add_a_credit_or_debit_card"
-        app:icon="@drawable/credit_card_icon"
         android:textAlignment="textStart"
+        app:icon="@drawable/credit_card_icon"
         app:iconSize="@dimen/_35sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/checkout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,5 +91,20 @@
         app:layout_constraintEnd_toEndOf="@+id/materialButton"
         app:layout_constraintTop_toTopOf="@+id/materialButton"
         app:layout_constraintVertical_bias="0.6" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/checkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:text="@string/checkout"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_16ssp"
+        app:cornerRadius="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton"
+        app:layout_constraintStart_toStartOf="@+id/materialButton"
+        app:layout_constraintTop_toBottomOf="@+id/materialButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

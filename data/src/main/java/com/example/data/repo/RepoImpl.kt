@@ -74,10 +74,9 @@ class RepoImpl(private val database: OranGoDataBase) {
         }
     }
 
-    suspend fun refreshProducts(customerId: Int) {
+    val searchProduct: suspend (name: String) -> LiveData<List<ProductEntity>> = { name ->
         withContext(Dispatchers.IO) {
-            val productsList = Api.retrofitService.getAllProducts(customerId = customerId)
-            database.orangoDao.addProduct(productsList.products.asDatabaseModel())
+            database.orangoDao.getSearchProduct(name)
         }
     }
 
@@ -105,6 +104,13 @@ class RepoImpl(private val database: OranGoDataBase) {
     val getReceiptHistory : suspend (customerId:Int) -> List<ReceiptEntity> = {customerId ->
         withContext(Dispatchers.IO){
             Api.retrofitService.getCustomerReceipt(customerId).receipts.asDatabaseModel()
+
+    suspend fun refreshFavourites(customerId : Int) {
+        withContext(Dispatchers.IO) {
+            val favouriteProductsResponse = Api.retrofitService.getFavouriteProducts(customerId = customerId)
+            withContext(Dispatchers.Main) {
+                favoritesLiveData.value = favouriteProductsResponse.products.asDatabaseModel()
+            }
         }
     }
 

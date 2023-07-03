@@ -65,5 +65,9 @@
         <item name="cornerSizeBottomLeft">@dimen/_20sdp</item>
     </style>
 
+    <style name="redButton" parent="Widget.AppCompat.ImageButton">
+        <item name="color">@color/red</item>
+    </style>
+
 
 </resources>
