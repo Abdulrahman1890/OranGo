@@ -20,6 +20,8 @@ import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 class RepoImpl(private val database: OranGoDataBase) {
@@ -44,20 +46,21 @@ class RepoImpl(private val database: OranGoDataBase) {
         }
     }
 
-    val sendFeedback: suspend (customerId : Int,message : String) -> AddFeedbackResponse = { customerId, message ->
-        withContext(Dispatchers.IO){
-            Api.retrofitService.addFeedback(customerId,message)
+    val sendFeedback: suspend (customerId: Int, message: String) -> AddFeedbackResponse =
+        { customerId, message ->
+            withContext(Dispatchers.IO) {
+                Api.retrofitService.addFeedback(customerId, message)
+            }
         }
-    }
 
     val getCategoryById: suspend (categoryId: Int) -> CategoryEntity? = { categoryId ->
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             database.orangoDao.getCategoryById(categoryId).getOrNull(0)
         }
     }
 
-    val getNumberOfPoints : suspend(customerId : Int) -> Int = {customerId->
-        withContext(Dispatchers.IO){
+    val getNumberOfPoints: suspend (customerId: Int) -> Int = { customerId ->
+        withContext(Dispatchers.IO) {
             Api.retrofitService.getPoints(customerId).points
         }
     }
@@ -87,155 +90,160 @@ class RepoImpl(private val database: OranGoDataBase) {
             }
         }
 
-    val detectProduct: suspend (imageFile : File) -> AIResponse = { imageFile ->
-        withContext(Dispatchers.IO){
+    val detectProduct: suspend (imageFile: File) -> AIResponse = { imageFile ->
+        withContext(Dispatchers.IO) {
             Api.retrofitServiceForAI.detectProduct(
                 convertImageFileToMultimediaPart(imageFile)
             )
         }
     }
 
-    val getProductByName: suspend (productName:String) -> ProductEntity? = {productName ->
-        withContext(Dispatchers.IO){
+    val getProductByName: suspend (productName: String) -> ProductEntity? = { productName ->
+        withContext(Dispatchers.IO) {
             database.orangoDao.getProductByName(productName).getOrNull(0)
         }
     }
 
-    val getReceiptHistory : suspend (customerId:Int) -> List<ReceiptEntity> = {customerId ->
-        withContext(Dispatchers.IO){
+    val getReceiptHistory: suspend (customerId: Int) -> List<ReceiptEntity> = { customerId ->
+        withContext(Dispatchers.IO) {
             Api.retrofitService.getCustomerReceipt(customerId).receipts.asDatabaseModel()
-
-    suspend fun refreshFavourites(customerId : Int) {
-        withContext(Dispatchers.IO) {
-            val favouriteProductsResponse = Api.retrofitService.getFavouriteProducts(customerId = customerId)
-            withContext(Dispatchers.Main) {
-                favoritesLiveData.value = favouriteProductsResponse.products.asDatabaseModel()
-            }
         }
     }
-
-    suspend fun refreshProducts() {
-        withContext(Dispatchers.IO) {
-            val productsList = Api.retrofitService.getAllProducts(customerId = 1)
-            database.orangoDao.addProduct(productsList.products.asDatabaseModel())
-        }
-    }
-
-
-    val products: LiveData<List<ProductEntity>> = database.orangoDao.getProducts()
-
-
-    suspend fun updateFavorites(customerId: Int, product: ProductEntity) {
-        withContext(Dispatchers.IO) {
-            database.orangoDao.setProductFavouriteState(product)
-            if (product.liked == 1) Api.retrofitService.insertToFavourite(customerId, product.id)
-            else Api.retrofitService.deleteFromFavourite(customerId, product.id)
-        }
-
-    }
-
-    suspend fun clearUserDB() {
-        withContext(Dispatchers.IO) {
-            database.clearAllTables()
-        }
-    }
-
-    suspend fun logIn(email: String, password: String): Boolean {
-        return withContext(Dispatchers.IO) {
-            val logInResponse = Api.retrofitService.logIn(email, password)
-            Log.d("TAGGG", "logIn: ${logInResponse}")
-            logInResponse.customerData?.let { customerData ->
-                this@RepoImpl.customerData = customerData
-            }
-            logInResponse.error?.let { error ->
-                currentError = error
-            }
-            return@withContext logInResponse.status
-        }
-    }
-
-    suspend fun signUp(
-        username: String,
-        email: String,
-        phoneNumber: String,
-        password: String
-    ): Boolean {
-        return withContext(Dispatchers.IO) {
-            val signUpResponse = Api.retrofitService.signUp(username, email, phoneNumber, password)
-            signUpResponse.error?.let { error ->
-                signUpError = error
-            }
-            return@withContext signUpResponse.status
-        }
-    }
-
-    suspend fun updateProfile(
-        id: Int,
-        username: String,
-        email: String,
-        phoneNumber: String,
-        password: String,
-        imageUri: String
-    ) {
-        withContext(Dispatchers.IO) {
-            val idRequestBody = id.toString().toRequestBody(MultipartBody.FORM)
-            val usernameRequestBody = username.toRequestBody(MultipartBody.FORM)
-            val emailRequestBody = email.toRequestBody(MultipartBody.FORM)
-            val phoneNumberRequestBody = phoneNumber.toRequestBody(MultipartBody.FORM)
-            val passwordRequestBody = password.toRequestBody(MultipartBody.FORM)
-            val imagePart = if (imageUri.isNotBlank()) {
-                val file = File(imageUri)
-                val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
-                imageRequestBody.let {
-                    MultipartBody.Part.createFormData("image", file.name, it)
+        suspend fun refreshFavourites(customerId: Int) {
+                withContext(Dispatchers.IO) {
+                    val favouriteProductsResponse =
+                        Api.retrofitService.getFavouriteProducts(customerId = customerId)
+                    withContext(Dispatchers.Main) {
+                        //favoritesLiveData.value =
+                            favouriteProductsResponse.products.asDatabaseModel()
+                    }
                 }
-            } else
-                null
-
-            val updateProfileResponse = Api.retrofitService.updateProfile(
-                idRequestBody,
-                usernameRequestBody,
-                emailRequestBody,
-                phoneNumberRequestBody,
-                passwordRequestBody,
-                imagePart
-            )
-
-            Log.d("TAGGG", "updateProfile: $updateProfileResponse")
-            updateProfileResponse.customerData?.let { customerData ->
-                this@RepoImpl.user = customerData.toUser()
             }
-            return@withContext updateProfileResponse.status
+        suspend fun refreshProducts(customerId: Int) {
+            withContext(Dispatchers.IO) {
+                val productsList = Api.retrofitService.getAllProducts(customerId = customerId)
+                database.orangoDao.addProduct(productsList.products.asDatabaseModel())
+            }
         }
-    }
 
-    suspend fun getProductByCategoryId(categoryId: Int) =
-        withContext(Dispatchers.IO){
-            try {
-                Api.retrofitService.getProductOfCategory(categoryId).products.asDatabaseModel()
-            }catch (ex:Exception){
+
+        val products: LiveData<List<ProductEntity>> = database.orangoDao.getProducts()
+
+
+        suspend fun updateFavorites(customerId: Int, product: ProductEntity) {
+            withContext(Dispatchers.IO) {
+                database.orangoDao.setProductFavouriteState(product)
+                if (product.liked == 1) Api.retrofitService.insertToFavourite(
+                    customerId,
+                    product.id
+                )
+                else Api.retrofitService.deleteFromFavourite(customerId, product.id)
+            }
+
+        }
+
+        suspend fun clearUserDB() {
+            withContext(Dispatchers.IO) {
+                database.clearAllTables()
+            }
+        }
+
+        suspend fun logIn(email: String, password: String): Boolean {
+            return withContext(Dispatchers.IO) {
+                val logInResponse = Api.retrofitService.logIn(email, password)
+                Log.d("TAGGG", "logIn: ${logInResponse}")
+                logInResponse.customerData?.let { customerData ->
+                    this@RepoImpl.customerData = customerData
+                }
+                logInResponse.error?.let { error ->
+                    currentError = error
+                }
+                return@withContext logInResponse.status
+            }
+        }
+
+        suspend fun signUp(
+            username: String,
+            email: String,
+            phoneNumber: String,
+            password: String
+        ): Boolean {
+            return withContext(Dispatchers.IO) {
+                val signUpResponse =
+                    Api.retrofitService.signUp(username, email, phoneNumber, password)
+                signUpResponse.error?.let { error ->
+                    signUpError = error
+                }
+                return@withContext signUpResponse.status
+            }
+        }
+
+        suspend fun updateProfile(
+            id: Int,
+            username: String,
+            email: String,
+            phoneNumber: String,
+            password: String,
+            imageUri: String
+        ) {
+            withContext(Dispatchers.IO) {
+                val idRequestBody = id.toString().toRequestBody(MultipartBody.FORM)
+                val usernameRequestBody = username.toRequestBody(MultipartBody.FORM)
+                val emailRequestBody = email.toRequestBody(MultipartBody.FORM)
+                val phoneNumberRequestBody = phoneNumber.toRequestBody(MultipartBody.FORM)
+                val passwordRequestBody = password.toRequestBody(MultipartBody.FORM)
+                val imagePart = if (imageUri.isNotBlank()) {
+                    val file = File(imageUri)
+                    val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
+                    imageRequestBody.let {
+                        MultipartBody.Part.createFormData("image", file.name, it)
+                    }
+                } else
+                    null
+
+                val updateProfileResponse = Api.retrofitService.updateProfile(
+                    idRequestBody,
+                    usernameRequestBody,
+                    emailRequestBody,
+                    phoneNumberRequestBody,
+                    passwordRequestBody,
+                    imagePart
+                )
+
+                Log.d("TAGGG", "updateProfile: $updateProfileResponse")
+                updateProfileResponse.customerData?.let { customerData ->
+                    this@RepoImpl.user = customerData.toUser()
+                }
+                return@withContext updateProfileResponse.status
+            }
+        }
+
+        suspend fun getProductByCategoryId(categoryId: Int) =
+            withContext(Dispatchers.IO) {
                 try {
-                    database.orangoDao.getProductsByCategoryId(categoryId)
-                }catch (ex:Exception){
-                    listOf()
+                    Api.retrofitService.getProductOfCategory(categoryId).products.asDatabaseModel()
+                } catch (ex: Exception) {
+                    try {
+                        database.orangoDao.getProductsByCategoryId(categoryId)
+                    } catch (ex: Exception) {
+                        listOf()
+                    }
                 }
             }
+
+        fun String.toRequestBody(contentType: MediaType): RequestBody {
+            return RequestBody.create(contentType, this)
         }
-}
 
-fun String.toRequestBody(contentType: MediaType): RequestBody {
-    return RequestBody.create(contentType, this)
-}
+        fun File.asRequestBody(mediaType: MediaType?): RequestBody {
+            return RequestBody.create(mediaType, this)
+        }
 
+        private fun convertImageFileToMultimediaPart(imageFile: File): MultipartBody.Part {
+            // Create a RequestBody object with the image file
+            val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
 
-fun File.asRequestBody(mediaType: MediaType?): RequestBody {
-    return RequestBody.create(mediaType, this)
-}
-
-private fun convertImageFileToMultimediaPart(imageFile: File): MultipartBody.Part {
-    // Create a RequestBody object with the image file
-    val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
-
-    // Create a MultipartBody.Part using the RequestBody
-    return MultipartBody.Part.createFormData("image", imageFile.name, requestBody)
+            // Create a MultipartBody.Part using the RequestBody
+            return MultipartBody.Part.createFormData("image", imageFile.name, requestBody)
+        }
 }
