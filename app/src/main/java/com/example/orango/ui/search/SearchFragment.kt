@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.data.roomDB.entities.ProductEntity
 import com.example.orango.R
 import com.example.orango.databinding.FragmentBestSellingBinding
 import com.example.orango.databinding.FragmentSearchBinding
@@ -51,12 +49,14 @@ class SearchFragment : Fragment() {
 
         binding.searchViewEditText.doOnTextChanged { text, start, before, count ->
             viewModel.search(text.toString())
+
         }
 
 
         viewModel.products.observe(viewLifecycleOwner){ products->
             productRecyclerViewAdapter.updateList(products)
         }
+
 
     }
 

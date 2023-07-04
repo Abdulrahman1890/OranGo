@@ -39,7 +39,7 @@ class SearchViewModel (application: Application) : AndroidViewModel(application)
                     val savedCustomerData =
                         Gson().fromJson(customerDataJson, CustomerData::class.java)
                     Log.d("logIn", "onViewCreated: $savedCustomerData")
-                    repo.refreshProducts(savedCustomerData!!.user.id)
+                 repo.refreshProducts(savedCustomerData!!.user.id)
                 } catch (ex: Exception) {
                     ex.printStackTrace()
                 }
