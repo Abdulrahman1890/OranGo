@@ -44,7 +44,7 @@ class SearchFragment : Fragment() {
         populateSearchAdapter()
 
         binding.backFromSearch.setOnClickListener {
-          //  findNavController().navigate(R.id.action_searchFragment2_to_homeFragment2)
+            findNavController().navigate(R.id.action_searchFragment2_to_homeFragment2)
         }
 
         binding.searchViewEditText.doOnTextChanged { text, start, before, count ->
